@@ -15,7 +15,10 @@ public class DirectorioTelefonico {
     }
     
     public void agregarCliente(String num, Cliente cliente) {
-        directorio.put(num, cliente);
+        if (this.buscarCliente(num) == null) {
+            directorio.put(num, cliente);
+            System.out.println("Agregado cliente "+ cliente.getNombre() + ", teléfono "+ num +" con éxito.");
+        } else System.out.println("No se pudo agregar el cliente " + cliente.getNombre() + ", el número proveído ya está asignado.");
     }
 
     public Cliente buscarCliente(String num) {
@@ -67,5 +70,6 @@ public class DirectorioTelefonico {
         for (String key : this.buscarTelefonosPorDni(dni)) {
             directorio.remove(key);
         }
+        System.out.println("Números del cliente con el dni " + dni + " borrados con éxito.");
     }
 }
